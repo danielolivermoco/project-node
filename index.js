@@ -1,75 +1,13 @@
-const express = require("express")
-const uuid = require('uuid') // instalei a biblioteca para criar id
-
-const app = express()
-app.use(express.json()) // Estou avisando pro express que eu quero usar o json por padrão no meu body  //
-
-      // Método Query Params //
-
-// app.get('/users', (request, response) => {
-    //const name = request.query.name // 
-   // const age = request.query.age 
-   //ou const { name , age } = request.query
-
-   //return response.send('Hello Express')
-    //return response.json({name: name, age: age})
-     // ou json ({name, age })
-//})
-
-//app.listen(3000, () => {
-   // console.log('🚀🚀 Server started on port 3000')
-//})
+import express, { json } from "express";
+import { v4 } from "uuid"; // instalei a biblioteca para criar id
+import cors from "cors"
 
 
-   // Método Route Params //
-
-// app.get('/users/:id', (request, response) => {
-    // const { id } = request.params
-    // console.log(id)
-
-    //return response.send('Hello Express')
-   //  return response.json({id})
-// })
-
-// app.listen(3000, () => {
-    // console.log('🚀🚀 Server started on port 3000')
-// })
-
-
-     // Método Body Params //
-
-// app.get('/users', (request, response) => {
-
-    // console.log(request.body)
-    // return response.json({ message: "Ok" })
-
-    // const { name, age } = request.body
-
-    // return response.json({ name, age })
-
-// })
-    
-// app.listen(3000, () => {
-        // console.log('🚀🚀 Server started on port 3000')
-// })
-    
-
-                 // MIDDLEWARES //
-
-
-// const myFirstMiddlewares = (request, response, next) => {
-   //  console.log('Fui chamado')
-                
-    // next() // pra que a minha aplicação continue rodando eu chamo o next()
-                
-    // console.log('Finalizamos')
-// }
-                
-// app.use(myFirstMiddlewares) // estou chamando o middlewares
-
-
-
- // Treinando Métodos GET, POST, PUT E DELETE //
+const port = 3001;
+const app = express();
+app.use(json()); // Estou avisando pro express que eu quero usar o json por padrão no meu body  //
+app.use(cors());
+     
 
 const users = []
 
@@ -88,7 +26,6 @@ const checkUserId = (request, response, next) => {
     next()
 }
 
-
 app.get('/users', (request, response) => {
     return response.json(users)
 })
@@ -96,7 +33,7 @@ app.get('/users', (request, response) => {
 app.post('/users', (request, response) => {
     const { name, age } = request.body // estou recebendo o nome e a idade que esta sendo enviado 
 
-    const user = { id: uuid.v4(), name, age }  // estou criando um usuario com nome, idade e id
+    const user = { id: v4(), name, age }  // estou criando um usuario com nome, idade e id
 
     users.push(user)  // estou guardando o usuario que criei dentro da variavel
 
@@ -130,13 +67,7 @@ app.delete('/users/:id', checkUserId, (request, response) => {
 
 })
 
-
-
-
-
-
-
-    
-app.listen(3000, () => {
-        console.log('🚀🚀 Server started on port 3000')
+   
+app.listen(port, () => {
+        console.log(`🚀🚀 Server started on port ${port}`)
 })
