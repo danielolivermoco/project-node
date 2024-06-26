@@ -3,7 +3,7 @@ import { v4 } from "uuid"; // instalei a biblioteca para criar id
 import cors from "cors"
 
 
-const port = 3001;
+const port = process.env.PORT || 3001;
 const app = express();
 app.use(json()); // Estou avisando pro express que eu quero usar o json por padrão no meu body  //
 app.use(cors());
