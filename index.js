@@ -7,6 +7,7 @@ const port = process.env.PORT || 3001;
 const app = express();
 app.use(json()); // Estou avisando pro express que eu quero usar o json por padrão no meu body  //
 app.use(cors());
+console.log(port)
      
 
 const users = []
@@ -54,7 +55,8 @@ app.put('/users/:id', checkUserId, (request, response) => {
     users[index] = updateUser // estou atualizando as informaçoes do meu usuario
 
     
-    return response.json(updateUser)
+    return response.json(users)
+    // return response.json(updateUser)
 
 })
 
