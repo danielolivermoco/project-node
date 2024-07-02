@@ -70,6 +70,6 @@ app.delete('/users/:id', checkUserId, (request, response) => {
 })
 
    
-app.listen(port, () => {
+app.listen(PORT, () => {
         console.log(`🚀🚀 Server started on port ${PORT}`)
 })
