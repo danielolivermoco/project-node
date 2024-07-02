@@ -1,11 +1,11 @@
-import express, { json } from "express";
+import express from "express";
 import { v4 } from "uuid"; // instalei a biblioteca para criar id
 import cors from "cors"
 
 
-const port = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;
 const app = express();
-app.use(json()); // Estou avisando pro express que eu quero usar o json por padrão no meu body  //
+app.use(express.json()); // Estou avisando pro express que eu quero usar o json por padrão no meu body  //
 app.use(cors());
 console.log(port)
      
@@ -71,5 +71,5 @@ app.delete('/users/:id', checkUserId, (request, response) => {
 
    
 app.listen(port, () => {
-        console.log(`🚀🚀 Server started on port ${port}`)
+        console.log(`🚀🚀 Server started on port ${PORT}`)
 })
