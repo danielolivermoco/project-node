@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.json()); // Estou avisando pro express que eu quero usar o json por padrão no meu body  //
 app.use(cors());
-console.log(port)
+console.log(PORT)
      
 
 const users = []
